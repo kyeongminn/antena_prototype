@@ -8,10 +8,10 @@
   display:grid;grid-template-columns:minmax(0,50%);
   align-content:center;gap:16px;padding:26px 32px;
   border:1px solid #e6e5f7;border-radius:22px;
-  /* 배너 원본: assets/모의투자home배너.png */
+  /* 배너: assets/sim-home-banner.png */
   background:
     linear-gradient(100deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.5) 34%,rgba(255,255,255,0) 56%),
-    url("%EB%AA%A8%EC%9D%98%ED%88%AC%EC%9E%90home%EB%B0%B0%EB%84%88.png") right bottom / cover no-repeat,
+    url("sim-home-banner.png") right bottom / cover no-repeat,
     linear-gradient(115deg,#f4f3fd 0%,#f7f7fe 44%,#eeeefb 100%);
 }
 .sh-hero-copy{position:relative;z-index:1}
