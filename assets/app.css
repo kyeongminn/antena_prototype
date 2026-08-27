@@ -579,3 +579,95 @@ body.modal-open{overflow:hidden}.prediction-modal[hidden]{display:none}.predicti
 .sg-price b{display:block;color:var(--ink);font:800 13px var(--mono)}
 .sg-price small{display:block;margin-top:2px;font:700 11.5px var(--mono)}
 .sg-empty{padding:16px 10px;color:var(--faint);font-size:13px;font-weight:650;text-align:center}
+
+/* ══ 공용 캐러셀 ═════════════════════════════════════════
+   [data-carousel] 컨테이너의 자식들이 슬라이드가 된다 (carousel.js).
+   더블 셀렉터는 각 페이지 CSS 의 display:grid 를 순서와 무관하게 이긴다. */
+[data-carousel][data-carousel]{position:relative;display:block}
+.car-track{display:flex;gap:var(--car-gap,18px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;outline:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track>*{flex:0 0 calc((100% - (var(--per,1) - 1)*var(--car-gap,18px))/var(--per,1));min-width:0;scroll-snap-align:start}
+.car-track:focus-visible{outline:2px solid var(--brand);outline-offset:4px;border-radius:8px}
+.car-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+  display:grid;place-items:center;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--rule);background:var(--surface);color:#5b6280;
+  font-size:19px;line-height:1;box-shadow:0 2px 10px rgba(20,20,27,.14);cursor:pointer;
+}
+.car-arrow.prev{left:-12px}
+.car-arrow.next{right:-12px}
+.car-arrow:hover{color:var(--brand);border-color:#cdc9f7}
+.car-arrow:disabled{opacity:.3;cursor:default}
+.car-dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
+.car-dot{width:8px;height:8px;padding:0;border:0;border-radius:999px;background:#d7d9e6;transition:width .18s,background .18s;cursor:pointer}
+.car-dot.on{width:22px;background:var(--brand)}
+.car-static>.car-arrow,.car-static>.car-dots{display:none}
+
+/* 컨텍스트별 표시 개수 */
+.sh-panels[data-carousel]{--per:2;--car-gap:18px}
+.ct-events[data-carousel]{--per:3;--car-gap:18px}
+.pr-courses[data-carousel]{--per:2;--car-gap:16px}
+.fc-four[data-carousel]{--per:2;--car-gap:20px}
+.sd-points[data-carousel]{--per:3;--car-gap:18px}
+@media(max-width:1180px){
+  .ct-events[data-carousel]{--per:2}
+  .sd-points[data-carousel]{--per:2}
+}
+@media(max-width:900px){
+  .sh-panels[data-carousel],.ct-events[data-carousel],
+  .pr-courses[data-carousel],.fc-four[data-carousel]{--per:1}
+}
+@media(max-width:760px){
+  .sd-points[data-carousel]{--per:1}
+}
+
+/* 인사이트 홈 — 프로모 배너 로테이션 (도트는 배너 안 하단 중앙) */
+.promotion-card[data-carousel]{--per:1;--car-gap:0px;padding:0;background:none}
+.promotion-card .car-track{height:100%;border-radius:inherit}
+.promo-slide{
+  position:relative;display:flex;flex-direction:column;min-height:350px;height:100%;
+  padding:24px 26px;overflow:hidden;border-radius:inherit;color:#fff;
+  background:radial-gradient(circle at 90% 18%,rgba(96,60,218,.5),transparent 31%),
+             linear-gradient(135deg,#080e59 0%,#11105a 55%,#1d0a70 100%);
+}
+.promo-art-right{position:absolute;z-index:1;right:-14px;bottom:0;width:56%;height:auto;inset:auto -14px 0 auto;object-fit:contain}
+.promotion-card .car-dots{position:absolute;left:0;right:0;bottom:14px;z-index:5;margin:0}
+.promotion-card .car-dot{background:rgba(255,255,255,.45)}
+.promotion-card .car-dot.on{background:#fff}
+
+/* ── 종목 보기: 상세 필터를 아이콘 클릭으로 열기 ─────── */
+/* 기본은 목록 전폭, 열면 왼쪽 컬럼으로 필터가 들어온다 */
+.explorer-body{grid-template-columns:minmax(0,1fr)}
+.explorer-body.filters-open{grid-template-columns:310px minmax(0,1fr)}
+@media(max-width:1450px){
+  .explorer-body.filters-open{grid-template-columns:280px minmax(0,1fr)}
+}
+@media(max-width:1100px){
+  .explorer-body.filters-open{grid-template-columns:minmax(0,1fr)}  /* 목록 위로 쌓임 */
+}
+.filter-panel[hidden]{display:none !important}  /* 좁은 폭의 display:grid 재정의 차단 */
+
+/* 툴바에 필터 아이콘 자리 추가 */
+.stock-list-toolbar{grid-template-columns:auto minmax(240px,520px) 170px 44px}
+@media(max-width:1450px){
+  .stock-list-toolbar{grid-template-columns:auto minmax(200px,1fr) 160px 44px}
+}
+@media(max-width:1100px){
+  .stock-list-toolbar{grid-template-columns:auto 1fr 160px 44px}
+}
+@media(max-width:720px){
+  .stock-list-toolbar{grid-template-columns:minmax(0,1fr) 110px 44px}
+}
+
+.filter-toggle{
+  position:relative;display:grid;place-items:center;width:44px;height:44px;
+  border:1px solid #e2e6f0;border-radius:11px;background:#f8f9fd;color:#505c7e;cursor:pointer;
+}
+.filter-toggle:hover{border-color:#7d80ed;color:var(--brand);background:#fff}
+.filter-toggle.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand-ink)}
+.filter-toggle.has-filters:not(.on){border-color:#cdc9f7;color:var(--brand)}
+.filter-badge{
+  position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;
+  border-radius:999px;background:var(--brand);color:#fff;
+  font:800 11px/18px var(--mono);text-align:center;
+}

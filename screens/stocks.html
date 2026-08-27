@@ -30,7 +30,7 @@
     </section>
 
     <div class="explorer-body">
-      <aside class="filter-panel" aria-labelledby="filter-title">
+      <aside class="filter-panel" id="filter-panel" aria-labelledby="filter-title" hidden>
         <h2 id="filter-title">상세 필터</h2>
 
         <fieldset class="filter-group">
@@ -84,6 +84,10 @@
             <input id="stock-search" type="search" placeholder="종목명 또는 종목코드 검색">
           </label>
           <label class="sort-select"><span class="sr-only">정렬 기준</span><select id="stock-sort"><option value="predictions">예측 많은 순</option><option value="change">등락률 높은 순</option><option value="price">현재가 높은 순</option><option value="name">종목명 순</option></select></label>
+          <button class="filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-panel" aria-label="상세 필터 열기">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8.5V19l-4 2v-7.5z"/></svg>
+            <b class="filter-badge" id="filter-badge" hidden></b>
+          </button>
         </div>
 
         <div class="stock-list-scroll">
@@ -164,6 +168,22 @@
 
     document.getElementById('visible-count').textContent = visible;
     document.getElementById('empty-stocks').hidden = visible !== 0;
+    updateFilterBadge();
+  }
+
+  // 적용된 상세 필터 개수를 아이콘 배지로 표시
+  function updateFilterBadge() {
+    var count = 0;
+    if (selectedMarket !== '전체') count++;
+    if (selectedSector !== '전체 종목') count++;
+    if (document.getElementById('per-min').value !== '') count++;
+    if (document.getElementById('per-max').value !== '') count++;
+    if (document.getElementById('ongoing-only').checked) count++;
+    if (document.getElementById('favorite-only').checked) count++;
+    var badge = document.getElementById('filter-badge');
+    badge.hidden = count === 0;
+    badge.textContent = count;
+    document.getElementById('filter-toggle').classList.toggle('has-filters', count > 0);
   }
 
   document.querySelectorAll('[data-market]').forEach(function (button) {
@@ -185,7 +205,22 @@
   });
 
   document.getElementById('stock-search').addEventListener('input', function (event) { query = event.target.value.trim().toLowerCase(); applyFilters(); });
-  document.getElementById('apply-filter').addEventListener('click', applyFilters);
+  // 필터 아이콘 → 패널 열고 닫기
+  var filterPanel = document.getElementById('filter-panel');
+  var filterToggle = document.getElementById('filter-toggle');
+  function setFiltersOpen(open) {
+    filterPanel.hidden = !open;
+    filterToggle.setAttribute('aria-expanded', String(open));
+    filterToggle.setAttribute('aria-label', open ? '상세 필터 닫기' : '상세 필터 열기');
+    filterToggle.classList.toggle('on', open);
+    document.querySelector('.explorer-body').classList.toggle('filters-open', open);
+  }
+  filterToggle.addEventListener('click', function () { setFiltersOpen(filterPanel.hidden); });
+
+  document.getElementById('apply-filter').addEventListener('click', function () {
+    applyFilters();
+    setFiltersOpen(false);   // 적용하면 패널을 닫는다
+  });
   document.getElementById('reset-filter').addEventListener('click', function () {
     selectedMarket = '전체'; selectedSector = '전체 종목'; query = '';
     document.getElementById('stock-search').value = '';
