@@ -1,4 +1,4 @@
-/* ANTENA prototype — 커뮤니티 게시글 (community.html) */
+/* ANTENA prototype — 커뮤니티 (목록 community.html · 상세 community-post.html) */
 
 .community{display:grid;grid-template-columns:minmax(0,1fr) minmax(296px,348px);gap:22px;align-items:start;max-width:1420px}
 .cm-main{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -168,4 +168,61 @@
   .cm-input{flex:1 1 100%;order:1}
   .cm-submit{order:2;margin-left:auto}
   .cm-reply{margin-left:16px;padding-left:20px}
+}
+
+/* ══ 게시글 목록 (community.html) ═════════════════════════ */
+.cl-head{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.cl-head h1{margin:0 0 7px;color:var(--ink);font-size:30px;font-weight:850;letter-spacing:-.035em}
+.cl-head p{margin:0;color:#79809a;font-size:15px;font-weight:650}
+.cl-write{display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 22px;margin-left:auto;border-radius:12px;background:var(--brand);color:#fff;font-size:14.5px;font-weight:750}
+.cl-write:hover{background:var(--brand-ink)}
+
+.cl-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.cl-cats button{height:36px;padding:0 16px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:#767e98;font-size:13.5px;font-weight:750}
+.cl-cats button:hover{border-color:var(--strong);color:var(--ink)}
+.cl-cats button.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand-ink)}
+
+.cl-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.cl-total{color:#8a93ad;font-size:13.5px;font-weight:700}
+.cl-total b{color:#2b3350;font-family:var(--mono)}
+.cl-sorts{display:flex;gap:7px;margin-left:auto}
+.cl-sorts button{height:34px;padding:0 15px;border:1px solid var(--rule);border-radius:999px;color:#818aa3;font-size:13.5px;font-weight:750}
+.cl-sorts button.on{border-color:var(--brand);background:var(--brand-softer);color:var(--brand-ink)}
+
+.cl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.cl-post{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;padding:22px 24px;background:var(--surface);border:1px solid var(--rule);border-radius:18px;box-shadow:var(--shadow);transition:border-color .14s,box-shadow .14s}
+.cl-post:hover{border-color:#cdc9f7;box-shadow:0 2px 4px rgba(20,20,27,.04),0 16px 34px -26px rgba(60,58,140,.42)}
+.cl-post[hidden]{display:none}
+.cl-post-main{min-width:0}
+.cl-badges{display:flex;align-items:center;gap:8px;margin-bottom:11px;flex-wrap:wrap}
+.cl-attach{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:7px;background:#e9f7f0;color:#178254;font-size:12px;font-weight:750}
+.cl-post h2{margin:0 0 9px;font-size:19px;font-weight:800;letter-spacing:-.025em;line-height:1.4}
+.cl-post h2 a{color:#161c37}
+.cl-post h2 a:hover{color:var(--brand-ink)}
+.cl-excerpt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 14px;color:#6b7291;font-size:14.5px;line-height:1.7;font-weight:600}
+.cl-post-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cl-poster{display:flex;align-items:center;gap:8px}
+.cl-poster b{color:#39405c;font-size:13.5px;font-weight:750}
+.cl-dot{color:#ccd1de}
+.cl-post-foot time{color:#9aa2b8;font:650 13px var(--mono)}
+.cl-counts{display:flex;align-items:center;gap:15px;margin-left:auto}
+.cl-counts span{display:inline-flex;align-items:center;gap:5px;color:#9aa2b8;font:650 13px var(--mono)}
+.cl-counts svg{color:#b3b9c9}
+.cl-thumb{width:132px;height:96px;flex:none;object-fit:cover;border-radius:12px}
+
+.cl-empty{margin:0;padding:44px 0;text-align:center;color:#9aa2b8;font-size:14px;font-weight:650}
+.cl-more{width:100%;height:52px;margin-top:16px;border:1px solid var(--rule);border-radius:14px;background:var(--surface);color:#5b6280;font-size:14.5px;font-weight:750}
+.cl-more:hover{border-color:#cdc9f7;color:var(--brand)}
+.cl-more:disabled{color:#a8afc2;cursor:default}
+
+.cl-tagcloud{display:flex;flex-wrap:wrap;gap:8px}
+.cl-tagcloud a{padding:6px 12px;border-radius:9px;background:#f3f4fa;color:#5b6178;font-size:13px;font-weight:700}
+.cl-tagcloud a:hover{background:var(--brand-soft);color:var(--brand-ink)}
+
+@media(max-width:720px){
+  .cl-head h1{font-size:24px}
+  .cl-write{width:100%;margin-left:0;justify-content:center}
+  .cl-post{grid-template-columns:minmax(0,1fr);padding:18px}
+  .cl-thumb{width:100%;height:150px;order:-1}
+  .cl-counts{width:100%;margin-left:0}
 }
