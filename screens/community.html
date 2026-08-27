@@ -24,6 +24,11 @@
         </a>
       </header>
 
+      <div class="cl-scopes" role="group" aria-label="범위">
+        <button class="on" type="button" data-scope="all">전체 글</button>
+        <button type="button" data-scope="mine">내가 쓴 글 <b>2</b></button>
+      </div>
+
       <div class="cl-cats" role="group" aria-label="분류">
         <button class="on" type="button" data-cat="all">전체</button>
         <button type="button" data-cat="리포트 공유">리포트 공유</button>
@@ -43,6 +48,50 @@
       </div>
 
       <ul class="cl-list" id="cl-list">
+
+        <li class="cl-post" data-cat="종목 토론" data-mine="true" data-date="20260827" data-likes="46" data-comments="12">
+          <div class="cl-post-main">
+            <p class="cl-badges">
+              <span class="cm-cat" style="margin:0">종목 토론</span>
+              <span class="cl-mine">내가 쓴 글</span>
+            </p>
+            <h2><a href="community-post.html">HBM4 수혜주, 장비주까지 봐야 하는 이유</a></h2>
+            <p class="cl-excerpt">공급망을 단계별로 나눠서 보면 후공정 장비 쪽 수주가 먼저 반응하는 패턴이 반복됩니다. 근거로 쓴 공시 목록도 함께 정리했습니다.</p>
+            <div class="cl-post-foot">
+              <span class="cl-poster"><i class="cm-avatar s av-4">안</i><b>안테나님</b><span class="cm-lv">Lv.12</span></span>
+              <span class="cl-dot">·</span>
+              <time datetime="2026-08-27T09:10">2026.08.27 09:10</time>
+              <span class="cl-counts">
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.3-9A5 5 0 0 1 12 6.5 5 5 0 0 1 21.3 11c-1.8 4.4-9.3 9-9.3 9z"/></svg>46</span>
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l2-3.2A8 8 0 1 1 21 12z"/></svg>12</span>
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>1,204</span>
+              </span>
+            </div>
+          </div>
+        </li>
+
+        <li class="cl-post" data-cat="인증·후기" data-mine="true" data-date="20260822" data-likes="28" data-comments="7">
+          <div class="cl-post-main">
+            <p class="cl-badges">
+              <span class="cm-cat" style="margin:0">인증·후기</span>
+              <span class="cl-mine">내가 쓴 글</span>
+              <span class="cl-draft">임시 저장</span>
+            </p>
+            <h2><a href="community-post.html">예측 20건 회고 — 맞춘 것보다 틀린 게 남는다</a></h2>
+            <p class="cl-excerpt">방향은 맞혔지만 목표가에서 크게 빗나간 사례를 모아봤습니다. 확신도를 높게 준 예측이 오히려 오차가 컸습니다.</p>
+            <div class="cl-post-foot">
+              <span class="cl-poster"><i class="cm-avatar s av-4">안</i><b>안테나님</b><span class="cm-lv">Lv.12</span></span>
+              <span class="cl-dot">·</span>
+              <time datetime="2026-08-22T21:40">2026.08.22 21:40</time>
+              <span class="cl-counts">
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.3-9A5 5 0 0 1 12 6.5 5 5 0 0 1 21.3 11c-1.8 4.4-9.3 9-9.3 9z"/></svg>28</span>
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l2-3.2A8 8 0 1 1 21 12z"/></svg>7</span>
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>640</span>
+              </span>
+            </div>
+          </div>
+        </li>
+
 
         <li class="cl-post" data-cat="리포트 공유" data-date="20260826" data-likes="201" data-comments="67">
           <div class="cl-post-main">
@@ -213,17 +262,29 @@
   var count = document.getElementById('cl-count');
   var empty = document.getElementById('cl-empty');
   var category = 'all';
+  var scope = 'all';
 
   function apply() {
     var shown = 0;
     posts.forEach(function (post) {
-      var ok = category === 'all' || post.dataset.cat === category;
+      var ok = (scope === 'all' || post.dataset.mine === 'true') &&
+               (category === 'all' || post.dataset.cat === category);
       post.hidden = !ok;
       if (ok) shown++;
     });
     count.textContent = shown;
     empty.hidden = shown > 0;
   }
+
+  document.querySelectorAll('.cl-scopes button').forEach(function (button) {
+    button.addEventListener('click', function () {
+      scope = button.dataset.scope;
+      document.querySelectorAll('.cl-scopes button').forEach(function (b) {
+        b.classList.toggle('on', b === button);
+      });
+      apply();
+    });
+  });
 
   document.querySelectorAll('.cl-cats button').forEach(function (button) {
     button.addEventListener('click', function () {
