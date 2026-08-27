@@ -4,33 +4,38 @@
 
 /* ── 히어로 ─────────────────────────────────────────── */
 .sh-hero{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px) minmax(230px,300px);
-  align-items:center;gap:20px;padding:28px 32px;
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,50%);
+  align-content:center;gap:16px;padding:26px 32px;
   border:1px solid #e6e5f7;border-radius:22px;
-  background:linear-gradient(115deg,#f4f3fd 0%,#f7f7fe 44%,#eeeefb 100%);
+  /* 배너 원본: assets/모의투자home배너.png */
+  background:
+    linear-gradient(100deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.5) 34%,rgba(255,255,255,0) 56%),
+    url("%EB%AA%A8%EC%9D%98%ED%88%AC%EC%9E%90home%EB%B0%B0%EB%84%88.png") right bottom / cover no-repeat,
+    linear-gradient(115deg,#f4f3fd 0%,#f7f7fe 44%,#eeeefb 100%);
 }
-.sh-flag{display:inline-block;margin-bottom:14px;padding:5px 13px;border-radius:8px;background:var(--brand-soft);color:#6355e8;font-size:13px;font-weight:750}
-.sh-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:#141a3c;font-size:34px;font-weight:850;letter-spacing:-.035em}
+.sh-hero-copy{position:relative;z-index:1}
+.sh-flag{display:inline-block;margin-bottom:10px;padding:5px 13px;border-radius:8px;background:var(--brand-soft);color:#6355e8;font-size:13px;font-weight:750}
+.sh-title{display:flex;align-items:center;gap:10px;margin:0 0 8px;color:#141a3c;font-size:34px;font-weight:850;letter-spacing:-.035em}
 .sh-title .sh-info{display:grid;place-items:center;width:22px;height:22px;flex:none;border-radius:50%;background:#dcdcef;color:#7a819c;font-size:13px;font-weight:800;cursor:help}
-.sh-lead{margin:0 0 26px;color:#666d90;font-size:15.5px;line-height:1.75;font-weight:600}
+.sh-lead{margin:0 0 18px;color:#666d90;font-size:15.5px;line-height:1.75;font-weight:600}
 
-.sh-progress-label{margin:0 0 9px;color:#4a5170;font-size:14px;font-weight:750}
-.sh-progress{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.sh-progress-label{margin:0 0 6px;color:#4a5170;font-size:14px;font-weight:750}
+.sh-progress{display:flex;align-items:center;gap:16px;margin-bottom:16px}
 .sh-bar{flex:1;min-width:0;height:11px;border-radius:999px;background:#e0e0ee;overflow:hidden}
 .sh-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#6f66ec,#5b52e6)}
 .sh-progress b{flex:none;color:#2a3054;font:800 17px var(--mono)}
 
 .sh-stats{display:flex;flex-wrap:wrap;gap:12px}
-.sh-stat{display:flex;align-items:center;gap:12px;padding:12px 18px;border:1px solid #e3e2f3;border-radius:14px;background:rgba(255,255,255,.72)}
+.sh-stat{display:flex;align-items:center;gap:12px;padding:10px 16px;border:1px solid #e3e2f3;border-radius:14px;background:rgba(255,255,255,.72)}
 .sh-stat svg{flex:none;color:#6f66ec}
 .sh-stat dt{margin:0 0 3px;color:#8a90ab;font-size:12.5px;font-weight:700}
 .sh-stat dd{margin:0;color:#1c2245;font-size:16px;font-weight:800;white-space:nowrap}
 
-.sh-art{margin:0;justify-self:center;max-width:100%}
-.sh-art img{display:block;width:100%;max-width:420px;height:auto}
 
-.sh-cta{display:flex;flex-direction:column;gap:13px}
-.sh-btn{display:flex;align-items:center;justify-content:center;gap:11px;height:64px;border-radius:14px;font-size:18px;font-weight:800;letter-spacing:-.02em;transition:background .15s,border-color .15s,transform .06s}
+.sh-cta{display:flex;flex-direction:row;gap:13px}
+.sh-cta .sh-btn{flex:1}
+.sh-btn{display:flex;align-items:center;justify-content:center;gap:11px;height:54px;border-radius:14px;font-size:18px;font-weight:800;letter-spacing:-.02em;transition:background .15s,border-color .15s,transform .06s}
 .sh-btn:active{transform:translateY(1px)}
 .sh-btn.solid{background:var(--brand);color:#fff;box-shadow:0 12px 26px -14px rgba(70,66,229,.65)}
 .sh-btn.solid:hover{background:var(--brand-ink)}
@@ -103,15 +108,12 @@
 .sh-hex svg{display:block}
 
 @media(max-width:1260px){
-  .sh-hero{grid-template-columns:minmax(0,1fr) minmax(0,340px);row-gap:24px}
-  .sh-cta{grid-column:1 / -1;flex-direction:row}
-  .sh-cta .sh-btn{flex:1}
+  .sh-hero{grid-template-columns:minmax(0,1fr);background-image:linear-gradient(115deg,#f4f3fd 0%,#f7f7fe 44%,#eeeefb 100%)}
   .sh-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sh-panels{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:760px){
-  .sh-hero{grid-template-columns:minmax(0,1fr);padding:22px 20px}
-  .sh-art{display:none}
+  .sh-hero{padding:22px 20px}
   .sh-cta{flex-direction:column}
   .sh-title{font-size:26px}
   .sh-kpis{grid-template-columns:minmax(0,1fr)}
