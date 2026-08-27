@@ -10,6 +10,7 @@
     community: '<path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/>',
     star:      '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
     play:      '<circle cx="12" cy="12" r="9"/><path d="m10 8.5 6 3.5-6 3.5z"/>',
+    research:  '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.6-4.6"/><path d="M8 10.5h5M10.5 8v5"/>',
     trophy:    '<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/><path d="M10 19h4M12 14v5M8 21h8"/>'
   };
 
@@ -34,6 +35,7 @@
         { key: 'home',      icon: 'home',      text: '모의 투자 홈', href: 'sim-index.html' },
         { key: 'play',      icon: 'play',      text: '모의 투자',    href: 'sim-setup.html' },
         { key: 'portfolio', icon: 'portfolio', text: '내 포트폴리오', href: 'sim-portfolio.html' },
+        { key: 'research',  icon: 'research',  text: '리서치',      href: 'sim-research.html' },
         { key: 'ranking',   icon: 'trophy',    text: '랭킹',        href: 'sim-ranking.html' }
       ]
     }
