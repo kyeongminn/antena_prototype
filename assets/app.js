@@ -41,6 +41,12 @@
     }
   };
 
+  // 로그인 상태 — 프로토타입이라 localStorage 로만 흉내낸다.
+  var AUTH_KEY = "antena.auth";
+  function loggedIn() {
+    try { return localStorage.getItem(AUTH_KEY) === "1"; } catch (e) { return false; }
+  }
+
   // index.html 은 루트, 나머지 화면은 screens/ 에 있다.
   var IN_SCREENS = location.pathname.indexOf("/screens/") !== -1;
   function url(file) {
@@ -92,7 +98,7 @@
               '<circle cx="12" cy="12" r="3"/>' +
               '<path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3.4a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.7 6.3l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1V2a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1"/></svg>' +
           '</button>' +
-          '<a class="avatar" href="' + url("portfolio.html") + '" aria-label="내 계정"></a>' +
+          '<a class="avatar" href="' + url("mypage.html") + '" aria-label="내 계정"></a>' +
         '</div>' +
       '</header>';
   }
@@ -106,7 +112,16 @@
     return '' +
       '<aside class="rail" id="rail">' +
         '<nav class="nav">' + items + '</nav>' +
-        '<div class="rail-foot"><a class="btn-login" href=' + '"' + url("login.html") + '">로그인 / 회원가입</a></div>' +
+        '<div class="rail-foot">' +
+          (loggedIn()
+            ? '<a class="rail-me" href="' + url("mypage.html") + '">' +
+                '<i class="rail-me-avatar">안</i>' +
+                '<span><b>안테나님</b><small>마이페이지</small></span>' +
+                '<em aria-hidden="true">›</em>' +
+              '</a>' +
+              '<button class="rail-logout" id="rail-logout" type="button">로그아웃</button>'
+            : '<a class="btn-login" href="' + url("login.html") + '">로그인 / 회원가입</a>') +
+        '</div>' +
       '</aside>' +
       '<div class="rail-backdrop" id="rail-backdrop"></div>';
   }
@@ -116,6 +131,14 @@
   var nav = body.dataset.nav || 'home';
 
   body.insertAdjacentHTML('afterbegin', topbar(mode) + rail(mode, nav));
+
+  var logout = document.getElementById("rail-logout");
+  if (logout) {
+    logout.addEventListener("click", function () {
+      try { localStorage.removeItem(AUTH_KEY); } catch (e) {}
+      location.href = url("index.html");
+    });
+  }
 
   // ── 사이드바 열고 닫기 ────────────────────────────────
   // 넓은 화면은 기본 열림(선택 상태를 기억), 좁은 화면은 기본 닫힘.

@@ -465,3 +465,24 @@ body.modal-open{overflow:hidden}.prediction-modal[hidden]{display:none}.predicti
   .sd-banner-copy h2{font-size:26px}
   .sd-cta{width:100%;height:64px;font-size:18px}
 }
+
+/* 로그인 후 사이드바 하단 — 마이페이지 진입 */
+.rail-me{
+  display:flex;align-items:center;gap:9px;padding:9px 10px;
+  border:1px solid var(--rule);border-radius:11px;background:var(--surface);
+}
+.rail-me:hover{border-color:#cdc9f7;background:var(--brand-softer)}
+.rail-me-avatar{
+  display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:50%;
+  background:linear-gradient(145deg,#5b57e0,#332f9e);color:#fff;font-style:normal;font:800 13px var(--sans);
+}
+.rail-me span{flex:1;min-width:0}
+.rail-me b{display:block;overflow:hidden;color:var(--ink);font-size:12.5px;font-weight:800;text-overflow:ellipsis;white-space:nowrap}
+.rail-me small{display:block;margin-top:2px;color:var(--brand);font-size:11.5px;font-weight:750}
+.rail-me em{flex:none;font-style:normal;color:#b3b9c9;font-size:15px}
+.rail-me:hover em{color:var(--brand)}
+.rail-logout{
+  display:block;width:100%;height:32px;margin-top:7px;border-radius:9px;
+  color:var(--faint);font-size:12px;font-weight:750;
+}
+.rail-logout:hover{background:var(--surface-2);color:var(--body)}
