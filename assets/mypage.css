@@ -117,3 +117,40 @@
   .mp-forecasts{padding:20px 18px}
   .mp-sorts{margin-left:0;width:100%}
 }
+
+/* ── 온체인 기록 (예측 행 펼침) ──────────────────────── */
+.mp-act-btn[aria-expanded="true"]{border-color:var(--brand);background:var(--brand-softer);color:var(--brand)}
+.mp-chain-row td{padding:0 20px 18px;border-top:0;background:#fbfbff}
+.mp-chain{
+  padding:20px 22px;border:1px solid #ddd9f8;border-radius:14px;background:var(--surface);
+  text-align:left;white-space:normal;
+}
+.mp-chain-head{display:flex;align-items:center;gap:10px;margin:0 0 18px;flex-wrap:wrap}
+.mp-chain-head h3{display:flex;align-items:center;gap:9px;margin:0;color:var(--brand-ink);font-size:15.5px;font-weight:850;letter-spacing:-.02em}
+.mp-chain-head h3 svg{color:var(--brand)}
+.mp-chain-state{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:8px;font-size:12.5px;font-weight:800}
+.mp-chain-state.done{background:#e9f7f0;color:#178254}
+.mp-chain-state.wait{background:var(--brand-soft);color:#6355e8}
+.mp-chain-net{margin-left:auto;color:#98a0b6;font:650 12.5px var(--mono)}
+
+.mp-chain-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 26px;margin:0 0 18px}
+.mp-chain-grid > div{min-width:0}
+.mp-chain-grid dt{margin:0 0 6px;color:#8a90ab;font-size:12.5px;font-weight:750}
+.mp-chain-grid dd{display:flex;align-items:center;gap:9px;margin:0;min-width:0;color:#2b3350;font:800 13.5px var(--mono)}
+.mp-chain-grid dd span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mp-copy{flex:none;width:26px;height:26px;border-radius:7px;color:#a2a9bd;font-size:13px}
+.mp-copy:hover{background:var(--surface-2);color:var(--brand)}
+.mp-copy.done{color:#16a06a}
+
+.mp-commit{display:flex;flex-wrap:wrap;gap:8px;padding-top:16px;border-top:1px solid #f0f2f7}
+.mp-commit span{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;background:#f4f4fb;color:#5b6280;font-size:12.5px;font-weight:750}
+.mp-commit span b{color:#2b3350;font-family:var(--mono);font-weight:800}
+.mp-chain-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.mp-explorer{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid #cdc9f7;border-radius:11px;color:var(--brand);font-size:13.5px;font-weight:750}
+.mp-explorer:hover{background:var(--brand-softer);border-color:var(--brand)}
+.mp-chain-note{display:flex;align-items:center;gap:8px;margin:14px 0 0;color:#98a0b6;font-size:12.5px;font-weight:650}
+.mp-chain-note svg{flex:none;color:#b3b9c9}
+
+@media(max-width:900px){
+  .mp-chain-grid{grid-template-columns:minmax(0,1fr)}
+}
