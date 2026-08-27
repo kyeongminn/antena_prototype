@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>예측 등록 · ANTENA</title>
+<link rel="stylesheet" href="../assets/app.css">
+</head>
+<body data-mode="insight" data-nav="market" class="prediction-create-page">
+
+<main class="main">
+  <div class="main-inner prediction-create">
+    <header class="prediction-stockbar">
+      <div class="prediction-stock-identity">
+        <i class="prediction-stock-logo">SAMSUNG</i>
+        <div>
+          <p class="prediction-stock-name"><strong>삼성전자</strong> <span class="num">005930</span> <button aria-label="삼성전자 관심 종목 추가">☆</button></p>
+          <p class="prediction-stock-price"><strong class="num">78,500</strong>원 <b class="num">+1,300 (+1.68%)</b></p>
+          <p class="prediction-stock-meta">KRX <span></span> 장마감 06.02 15:30</p>
+        </div>
+      </div>
+      <section class="evidence-summary" aria-labelledby="evidence-summary-title">
+        <h1 id="evidence-summary-title">선택한 근거 요약</h1>
+        <div class="evidence-summary-items">
+          <span>리포트 <b class="num">2건</b></span><span>공시 (DART) <b class="num">1건</b></span><span>IR 자료 <b class="num">1건</b></span><span>뉴스 <b class="num">1건</b></span><span>핵심지표 <b class="num">5개</b></span>
+        </div>
+        <strong class="summary-total">총 <span id="summary-count">10</span>개 선택</strong>
+      </section>
+    </header>
+
+    <div class="prediction-page-grid">
+      <section class="prediction-editor-card">
+        <form class="prediction-form" id="prediction-form">
+          <h2>예측 등록하기</h2>
+
+          <fieldset class="prediction-step direction-step">
+            <legend><i>1</i> 예측 방향</legend>
+            <div class="direction-options">
+              <label class="direction-option up selected"><input type="radio" name="direction" value="UP" checked><span class="direction-icon">↗</span><span><b>상승 (UP)</b><small>주가가 오를 것으로 예상</small></span></label>
+              <label class="direction-option down"><input type="radio" name="direction" value="DOWN"><span class="direction-icon">↘</span><span><b>하락 (DOWN)</b><small>주가가 내릴 것으로 예상</small></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="prediction-step target-step">
+            <legend><i>2</i> 목표가 (KRW)</legend>
+            <label class="price-input"><input id="target-price" type="text" inputmode="numeric" value="85,000" aria-label="목표가"><span>원</span></label>
+            <p>현재가 <b class="num">78,500원</b> <strong class="num">(+8.28%)</strong></p>
+          </fieldset>
+
+          <fieldset class="prediction-step period-step">
+            <legend><i>3</i> 예측 기간</legend>
+            <div class="period-options">
+              <label class="period-option selected"><input type="radio" name="period" value="10" checked><b>10영업일</b><small>~ 2025.06.16</small></label>
+              <label class="period-option"><input type="radio" name="period" value="20"><b>20영업일</b><small>~ 2025.06.30</small></label>
+              <label class="period-option direct"><input type="radio" name="period" value="direct"><b>▣ &nbsp; 직접 입력</b><small>마감일 선택</small></label>
+            </div>
+            <label class="direct-date" hidden>예측 마감일 <input id="direct-date" type="date" value="2025-06-16"></label>
+          </fieldset>
+
+          <fieldset class="prediction-step judgment-step">
+            <legend><i>4</i> 내 판단 <small>(선택)</small></legend>
+            <div class="judgment-editor">
+              <div class="editor-toolbar" aria-label="텍스트 서식 도구"><button type="button" data-insert="# ">H</button><button type="button" data-wrap="**">B</button><button type="button" data-wrap="_">I</button><button type="button" data-insert="“ ”">❝</button><button type="button" data-insert="• ">☷</button><button type="button" data-insert="1. ">☰</button><button type="button" data-wrap="[]()">↗</button><button type="button" data-wrap="`">&lt;/&gt;</button></div>
+              <textarea id="judgment-text" maxlength="500">AI 서버 수요 증가와 메모리 업황 개선, 파운드리 가동률 회복이 동반되어 실적 개선 흐름이 이어질 것으로 판단합니다.&#10;HBM4 양산 본격화와 모바일 수요 회복도 긍정적입니다.</textarea>
+              <span class="editor-count"><b id="judgment-count">85</b> / 500</span>
+            </div>
+          </fieldset>
+        </form>
+
+        <section class="selected-evidence" aria-labelledby="selected-evidence-title">
+          <div class="selected-evidence-head"><h2 id="selected-evidence-title">선택한 근거 (<span id="selected-count">10</span>)</h2><button id="add-ai-evidence" type="button">AI 근거 추가하기</button></div>
+
+          <div class="evidence-source-list" id="evidence-source-list">
+            <article class="evidence-source selected" data-evidence-count="1"><div class="evidence-source-title"><i class="source-dart">DART</i><h3>DART 요약</h3><time>2025.05.31</time><label><input class="evidence-toggle" type="checkbox" checked><span>✓ 선택됨</span></label></div><ul><li>1분기 영업이익 6.7조원 (YoY +12%, QoQ +12.3%)</li><li>반도체 사업 영업이익 1.1조원으로 흑자 전환</li></ul><a href="#">원문 보기</a></article>
+            <article class="evidence-source selected" data-evidence-count="1"><div class="evidence-source-title"><i class="source-ir">IR</i><h3>IR 핵심 내용</h3><time>2025.05.30</time><label><input class="evidence-toggle" type="checkbox" checked><span>✓ 선택됨</span></label></div><ul><li>AI 메모리 시장 성장으로 HBM 수요 증가 지속 전망</li><li>2나노 양산 개선이 본격화, 파운드리 고객 확대</li></ul><a href="#">원문 보기</a></article>
+            <article class="evidence-source selected" data-evidence-count="1"><div class="evidence-source-title"><i class="source-news">뉴스</i><h3>최근 뉴스 요약</h3><time>2025.06.02</time><label><input class="evidence-toggle" type="checkbox" checked><span>✓ 선택됨</span></label></div><ul><li>삼성전자, 엔비디아 HBM4 12단 공급 독점 가능성</li><li>글로벌 스마트폰 시장 회복세 본격화 (ZDNet)</li></ul><a href="#">더 보기</a></article>
+          </div>
+
+          <section class="key-metrics" aria-labelledby="key-metrics-title">
+            <h3 id="key-metrics-title"><i>▣</i> 핵심 지표 (5개)</h3>
+            <div class="metric-select-grid">
+              <label><input class="metric-toggle" type="checkbox" checked><span>PER (TTM)<b>17.21배</b><i>✓</i></span></label>
+              <label><input class="metric-toggle" type="checkbox" checked><span>PBR (TTM)<b>1.21배</b><i>✓</i></span></label>
+              <label><input class="metric-toggle" type="checkbox" checked><span>EPS (TTM)<b>4,554원</b><i>✓</i></span></label>
+              <label><input class="metric-toggle" type="checkbox" checked><span>ROE (TTM)<b>7.23%</b><i>✓</i></span></label>
+              <label><input class="metric-toggle" type="checkbox" checked><span>영업이익률<b>17.8%</b><i>✓</i></span></label>
+            </div>
+          </section>
+
+          <article class="ai-thesis" id="ai-thesis"><h3><i>✣</i> AI 한줄 요약 (Thesis)</h3><p>메모리 업황 회복과 AI 수요 확대, 파운드리 개선이 실적 턴어라운드를 견인하며 단기 상승이 기대됩니다.</p></article>
+        </section>
+      </section>
+
+      <aside class="onchain-preview" aria-labelledby="onchain-preview-title">
+        <h2 id="onchain-preview-title">온체인 기록 미리보기 <span title="실제 등록 전 예상 값입니다">ⓘ</span></h2>
+        <figure class="onchain-art" aria-hidden="true"><img src="../assets/onchain-blocks-transparent-v1.png" alt=""></figure>
+        <dl class="preview-details">
+          <div><dt>종목</dt><dd>삼성전자 (005930)</dd></div>
+          <div><dt>예측 방향</dt><dd id="preview-direction" class="preview-direction up">↗ &nbsp;상승 (UP)</dd></div>
+          <div><dt>목표가</dt><dd id="preview-price" class="num">85,000원</dd></div>
+          <div><dt>예측 기간</dt><dd id="preview-period">10영업일 (~ 2025.06.16)</dd></div>
+          <div><dt>예측 시각</dt><dd class="num">2025.06.02 16:20:45 (KST)</dd></div>
+          <div><dt>사용자 ID</dt><dd class="num">antena_user_12</dd></div>
+          <div><dt>근거 해시 (예상)</dt><dd class="num">a9f3b2e7...d4c8f21e &nbsp;⧉</dd></div>
+          <div><dt>선택 근거 수</dt><dd><span id="preview-count">10</span>개</dd></div>
+        </dl>
+
+        <section class="prediction-warning"><h3>❕ 유의사항</h3><ul><li>예측은 투자 참고용 정보이며, 투자 결과에 대한 책임은 투자자 본인에게 있습니다.</li><li>블록체인에 기록되어 수정·삭제가 불가능합니다.</li><li>신중한 판단 후 예측을 등록해 주세요.</li></ul></section>
+        <button class="prediction-submit" id="prediction-submit" type="button">예측 등록하기</button>
+        <p class="chain-safe" id="chain-status">♢ &nbsp; 블록체인에 안전하게 기록됩니다.</p>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div class="prediction-modal" id="prediction-modal" hidden>
+  <button class="prediction-modal-backdrop" type="button" aria-label="팝업 닫기" data-modal-close></button>
+  <section class="prediction-progress-dialog" role="dialog" aria-modal="true" aria-labelledby="progress-modal-title" tabindex="-1">
+    <header class="progress-modal-head"><h2 id="progress-modal-title">예측을 블록에 기록하고 있어요</h2><button class="progress-modal-close" type="button" aria-label="닫기" data-modal-close>×</button></header>
+
+    <div class="carrier-stage" id="carrier-stage">
+      <h3>캐릭터들이 예측 블록을 안전하게 옮기고 있어요</h3>
+      <div class="carrier-lane" aria-hidden="true">
+        <span class="carrier-route"></span>
+        <img class="block-carrier carrier-one" src="../assets/prediction-carrier-right-v1.png" alt="">
+        <img class="block-carrier carrier-two" src="../assets/prediction-carrier-right-v1.png" alt="">
+        <img class="block-carrier carrier-three" src="../assets/prediction-carrier-right-v1.png" alt="">
+        <img class="block-carrier carrier-four" src="../assets/prediction-carrier-right-v1.png" alt="">
+        <img class="destination-vault" src="../assets/prediction-vault-v1.png" alt="">
+        <i class="vault-spark spark-one"></i><i class="vault-spark spark-two"></i><i class="vault-spark spark-three"></i>
+      </div>
+    </div>
+
+    <ol class="chain-progress-list" aria-label="예측 등록 진행 단계">
+      <li class="done" data-progress="signature"><i>✓</i><span><strong>지갑 서명 완료</strong><small>사용자 확인이 완료되었습니다.</small></span></li>
+      <li class="done" data-progress="hash"><i>✓</i><span><strong>커밋 해시 생성</strong><small>선택한 근거를 하나의 기록으로 묶었습니다.</small></span></li>
+      <li class="active" data-progress="anchor"><i><b></b></i><span><strong>머클 앵커 대기</strong><small>블록에 기록할 차례를 기다리고 있습니다.</small></span></li>
+    </ol>
+
+    <p class="progress-immutability">♙ <span>앵커가 완료되면 이 예측은 누구도, 나조차도 수정할 수 없습니다.</span></p>
+    <footer class="progress-modal-actions"><button type="button" class="modal-secondary" data-modal-close>닫기</button><button type="button" class="modal-primary" id="go-predictions" disabled>내 예측 내역으로</button></footer>
+  </section>
+</div>
+
+<script src="../assets/app.js"></script>
+<script>
+// 종목 보기에서 넘어온 종목으로 화면을 채운다 (?code=&name=&price=&change=…)
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (!q.get("code")) return;
+
+  var name = q.get("name") || "";
+  var code = q.get("code");
+  var price = Number(q.get("price") || 0);
+  var change = Number(q.get("change") || 0);
+  var won = function (n) { return n.toLocaleString("ko-KR"); };
+
+  document.title = name + " 예측 등록 · ANTENA";
+
+  var logo = document.querySelector(".prediction-stock-logo");
+  if (logo) {
+    logo.textContent = q.get("mark") || name.slice(0, 1);
+    if (q.get("logo")) logo.className = "prediction-stock-logo " + q.get("logo");
+  }
+
+  var nameEl = document.querySelector(".prediction-stock-name");
+  if (nameEl) {
+    nameEl.querySelector("strong").textContent = name;
+    nameEl.querySelector(".num").textContent = code;
+    var fav = nameEl.querySelector("button");
+    if (fav) fav.setAttribute("aria-label", name + " 관심 종목 추가");
+  }
+
+  var priceEl = document.querySelector(".prediction-stock-price");
+  if (priceEl && price) {
+    var delta = Math.round(price * change / 100);
+    var sign = delta >= 0 ? "+" : "-";
+    priceEl.querySelector("strong").textContent = won(price);
+    var b = priceEl.querySelector("b");
+    b.textContent = sign + won(Math.abs(delta)) + " (" + sign + Math.abs(change).toFixed(2) + "%)";
+    b.className = "num " + (delta >= 0 ? "rise" : "fall");
+  }
+
+  var meta = document.querySelector(".prediction-stock-meta");
+  if (meta && q.get("market")) meta.firstChild.textContent = q.get("market") + " ";
+
+  // 목표가 기본값 — 현재가의 +8%를 100원 단위로
+  if (price) {
+    var target = Math.round(price * 1.08 / 100) * 100;
+    var input = document.getElementById("target-price");
+    if (input) input.value = won(target);
+    var preview = document.getElementById("preview-price");
+    if (preview) preview.textContent = won(target) + "원";
+  }
+
+  document.querySelectorAll(".preview-details dt").forEach(function (dt) {
+    if (dt.textContent.trim() === "종목") dt.nextElementSibling.textContent = name + " (" + code + ")";
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var priceInput = document.getElementById('target-price');
+  var previewPrice = document.getElementById('preview-price');
+  var directDate = document.querySelector('.direct-date');
+  var baseEvidenceCount = 2;
+  var aiAdded = false;
+
+  function formatPrice(value) {
+    var digits = String(value).replace(/\D/g, '').slice(0, 9);
+    return digits ? Number(digits).toLocaleString('ko-KR') : '';
+  }
+
+  function updateEvidenceCount() {
+    var sourceCount = Array.from(document.querySelectorAll('.evidence-toggle:checked')).reduce(function (sum, input) { return sum + Number(input.closest('[data-evidence-count]').dataset.evidenceCount); }, 0);
+    var metricCount = document.querySelectorAll('.metric-toggle:checked').length;
+    var total = baseEvidenceCount + sourceCount + metricCount + (aiAdded ? 1 : 0);
+    ['selected-count','summary-count','preview-count'].forEach(function (id) { document.getElementById(id).textContent = total; });
+  }
+
+  document.querySelectorAll('input[name="direction"]').forEach(function (input) {
+    input.addEventListener('change', function () {
+      document.querySelectorAll('.direction-option').forEach(function (option) { option.classList.toggle('selected', option.contains(input) && input.checked); });
+      var preview = document.getElementById('preview-direction');
+      var up = input.value === 'UP';
+      preview.textContent = (up ? '↗  상승 (UP)' : '↘  하락 (DOWN)');
+      preview.className = 'preview-direction ' + (up ? 'up' : 'down');
+    });
+  });
+
+  priceInput.addEventListener('input', function () { priceInput.value = formatPrice(priceInput.value); previewPrice.textContent = (priceInput.value || '0') + '원'; });
+
+  document.querySelectorAll('input[name="period"]').forEach(function (input) {
+    input.addEventListener('change', function () {
+      document.querySelectorAll('.period-option').forEach(function (option) { option.classList.toggle('selected', option.contains(input) && input.checked); });
+      directDate.hidden = input.value !== 'direct';
+      document.getElementById('preview-period').textContent = input.value === '10' ? '10영업일 (~ 2025.06.16)' : input.value === '20' ? '20영업일 (~ 2025.06.30)' : '직접 입력 (~ ' + document.getElementById('direct-date').value.replaceAll('-', '.') + ')';
+    });
+  });
+  document.getElementById('direct-date').addEventListener('change', function (event) { if (document.querySelector('input[name="period"]:checked').value === 'direct') document.getElementById('preview-period').textContent = '직접 입력 (~ ' + event.target.value.replaceAll('-', '.') + ')'; });
+
+  var judgment = document.getElementById('judgment-text');
+  function updateJudgmentCount() { document.getElementById('judgment-count').textContent = judgment.value.length; }
+  judgment.addEventListener('input', updateJudgmentCount); updateJudgmentCount();
+  document.querySelectorAll('.editor-toolbar button').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var start = judgment.selectionStart, end = judgment.selectionEnd, selected = judgment.value.slice(start, end);
+      var insert = button.dataset.insert;
+      var wrap = button.dataset.wrap;
+      var replacement = insert || (wrap === '[]()' ? '[' + selected + ']()' : wrap + selected + wrap);
+      judgment.setRangeText(replacement, start, end, 'end'); judgment.focus(); updateJudgmentCount();
+    });
+  });
+
+  document.querySelectorAll('.evidence-toggle').forEach(function (input) { input.addEventListener('change', function () { input.closest('.evidence-source').classList.toggle('selected', input.checked); input.nextElementSibling.textContent = input.checked ? '✓ 선택됨' : '선택'; updateEvidenceCount(); }); });
+  document.querySelectorAll('.metric-toggle').forEach(function (input) { input.addEventListener('change', updateEvidenceCount); });
+  document.getElementById('add-ai-evidence').addEventListener('click', function (event) { if (aiAdded) return; aiAdded = true; event.currentTarget.textContent = 'AI 근거 추가됨 ✓'; event.currentTarget.classList.add('added'); document.getElementById('ai-thesis').classList.add('selected'); updateEvidenceCount(); });
+
+  var modal = document.getElementById('prediction-modal');
+  var modalDialog = modal.querySelector('.prediction-progress-dialog');
+  var modalTitle = document.getElementById('progress-modal-title');
+  var anchorStep = modal.querySelector('[data-progress="anchor"]');
+  var goPredictions = document.getElementById('go-predictions');
+  var submitButton = document.getElementById('prediction-submit');
+  var modalTimers = [];
+  var registrationComplete = false;
+  var returnFocus = null;
+
+  function clearModalTimers() { modalTimers.forEach(clearTimeout); modalTimers = []; }
+  function openPredictionModal() {
+    clearModalTimers(); registrationComplete = false; returnFocus = document.activeElement;
+    modal.hidden = false; document.body.classList.add('modal-open');
+    modalTitle.textContent = '예측을 블록에 기록하고 있어요';
+    anchorStep.className = 'active'; anchorStep.querySelector('i').innerHTML = '<b></b>';
+    anchorStep.querySelector('strong').textContent = '머클 앵커 대기';
+    anchorStep.querySelector('small').textContent = '블록에 기록할 차례를 기다리고 있습니다.';
+    goPredictions.disabled = true; document.getElementById('carrier-stage').classList.remove('complete');
+    modal.classList.remove('is-active'); void modal.offsetWidth; modal.classList.add('is-active');
+    modalDialog.focus(); submitButton.textContent = '등록 진행 중…';
+    modalTimers.push(setTimeout(function () {
+      registrationComplete = true; modalTitle.textContent = '예측 기록 준비가 완료됐어요';
+      anchorStep.className = 'done'; anchorStep.querySelector('i').textContent = '✓';
+      anchorStep.querySelector('strong').textContent = '머클 앵커 준비 완료';
+      anchorStep.querySelector('small').textContent = '지갑 전송을 확인할 수 있는 상태입니다.';
+      goPredictions.disabled = false; document.getElementById('carrier-stage').classList.add('complete');
+    }, 4800));
+  }
+  function closePredictionModal() {
+    clearModalTimers(); modal.classList.remove('is-active'); modal.hidden = true; document.body.classList.remove('modal-open');
+    submitButton.textContent = registrationComplete ? '등록 준비 완료 ✓' : '예측 등록하기';
+    submitButton.classList.toggle('ready', registrationComplete);
+    if (registrationComplete) document.getElementById('chain-status').textContent = '지갑 전송을 진행할 수 있도록 준비되었습니다.';
+    if (returnFocus) returnFocus.focus();
+  }
+
+  submitButton.addEventListener('click', openPredictionModal);
+  modal.querySelectorAll('[data-modal-close]').forEach(function (button) { button.addEventListener('click', closePredictionModal); });
+  goPredictions.addEventListener('click', closePredictionModal);
+  document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && !modal.hidden) closePredictionModal(); });
+  updateEvidenceCount();
+})();
+</script>
+</body>
+</html>
