@@ -5,23 +5,347 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>찜 · ANTENA</title>
 <link rel="stylesheet" href="../assets/app.css">
+<link rel="stylesheet" href="../assets/watchlist.css">
 </head>
-<body data-mode="insight" data-nav="watchlist">
+<body data-mode="insight" data-nav="watchlist" class="watchlist-page">
 
 <main class="main">
-  <div class="main-inner">
-    <div class="page-head">
-      <span class="route">/watchlist</span>
-      <h1>찜한 종목</h1>
-      <p>관심 종목과 구독 예측자의 새 소식을 모아 봅니다.</p>
-    </div>
-    <section class="card">
-      <h2>관심 종목</h2><p>종가 · 등락 · 새 예측 알림</p>
-      <div class="placeholder tall">찜 목록</div>
+  <div class="main-inner watch">
+
+    <header class="wl-head">
+      <div>
+        <h1>찜</h1>
+        <p>관심 종목과 찜한 리포트 · 예측가를 한곳에서 확인합니다.</p>
+      </div>
+      <a class="wl-alarm" href="#">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        알림 설정
+      </a>
+    </header>
+
+    <!-- 요약 -->
+    <dl class="wl-card wl-summary">
+      <div class="wl-sum">
+        <i class="wl-tone-v"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></i>
+        <div><dt>찜한 종목</dt><dd id="wl-count-stock">5<small>개</small></dd></div>
+      </div>
+      <div class="wl-sum">
+        <i class="wl-tone-b"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 12h6M9 16h6"/></svg></i>
+        <div><dt>찜한 리포트</dt><dd id="wl-count-report">4<small>건</small></dd></div>
+      </div>
+      <div class="wl-sum">
+        <i class="wl-tone-g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20v-1.5A4.5 4.5 0 0 1 7.5 14h3a4.5 4.5 0 0 1 4.5 4.5V20"/><path d="M17.5 20v-1a3.5 3.5 0 0 0-3-3.4"/></svg></i>
+        <div><dt>찜한 예측가</dt><dd id="wl-count-user">4<small>명</small></dd></div>
+      </div>
+      <div class="wl-sum">
+        <i class="wl-tone-o"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></i>
+        <div><dt>새 소식</dt><dd>3<small>건</small></dd></div>
+      </div>
+    </dl>
+
+    <!-- 탭 -->
+    <nav class="wl-tabs" role="group" aria-label="찜 분류">
+      <button class="on" type="button" data-tab="stock">종목 <b id="wl-tab-stock">5</b></button>
+      <button type="button" data-tab="report">리포트 <b id="wl-tab-report">4</b></button>
+      <button type="button" data-tab="user">예측가 <b id="wl-tab-user">4</b></button>
+    </nav>
+
+    <!-- 종목 -->
+    <section class="wl-card wl-panel" id="panel-stock">
+      <ul class="wl-stocks" id="wl-stock-list">
+
+        <li class="wl-stock">
+          <span class="wl-name"><i class="wl-logo" style="background:linear-gradient(145deg,#1887f1,#0b5ed7)">삼</i><span><b>삼성전자</b><small>005930 · KOSPI</small></span></span>
+          <span class="wl-price">71,800원</span>
+          <span class="wl-chg rise">+1.42%</span>
+          <span class="wl-dist"><span>UP 71%<em style="font-style:normal">17건</em></span><i><em style="width:71%"></em></i></span>
+          <button class="wl-toggle" type="button" aria-pressed="true" aria-label="삼성전자 알림"></button>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-stock">
+          <span class="wl-name"><i class="wl-logo" style="background:linear-gradient(145deg,#404dff,#3b35d7)">S</i><span><b>SK하이닉스</b><small>000660 · KOSPI</small></span></span>
+          <span class="wl-price">198,500원</span>
+          <span class="wl-chg rise">+2.85%</span>
+          <span class="wl-dist"><span>UP 82%<em style="font-style:normal">22건</em></span><i><em style="width:82%"></em></i></span>
+          <button class="wl-toggle" type="button" aria-pressed="true" aria-label="SK하이닉스 알림"></button>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-stock">
+          <span class="wl-name"><i class="wl-logo" style="background:linear-gradient(145deg,#12c883,#00a86b)">N</i><span><b>NAVER</b><small>035420 · KOSPI</small></span></span>
+          <span class="wl-price">176,300원</span>
+          <span class="wl-chg fall">-0.62%</span>
+          <span class="wl-dist"><span>DOWN 56%<em style="font-style:normal">16건</em></span><i><em style="width:44%"></em></i></span>
+          <button class="wl-toggle" type="button" aria-pressed="false" aria-label="NAVER 알림"></button>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-stock">
+          <span class="wl-name"><i class="wl-logo" style="background:linear-gradient(145deg,#c02e67,#981743)">L</i><span><b>LG에너지솔루션</b><small>373220 · KOSPI</small></span></span>
+          <span class="wl-price">342,000원</span>
+          <span class="wl-chg fall">-1.87%</span>
+          <span class="wl-dist"><span>DOWN 68%<em style="font-style:normal">19건</em></span><i><em style="width:32%"></em></i></span>
+          <button class="wl-toggle" type="button" aria-pressed="true" aria-label="LG에너지솔루션 알림"></button>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-stock">
+          <span class="wl-name"><i class="wl-logo" style="background:linear-gradient(145deg,#13aaa2,#087a7b)">현</i><span><b>현대차</b><small>005380 · KOSPI</small></span></span>
+          <span class="wl-price">242,000원</span>
+          <span class="wl-chg rise">+0.83%</span>
+          <span class="wl-dist"><span>UP 60%<em style="font-style:normal">15건</em></span><i><em style="width:60%"></em></i></span>
+          <button class="wl-toggle" type="button" aria-pressed="false" aria-label="현대차 알림"></button>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+      </ul>
+      <p class="wl-empty" id="wl-empty-stock" hidden>찜한 종목이 없습니다.</p>
     </section>
+
+    <!-- 리포트 -->
+    <section class="wl-card wl-panel" id="panel-report" hidden>
+      <ul class="wl-reports" id="wl-report-list">
+
+        <li class="wl-report">
+          <div class="wl-report-main">
+            <p class="wl-author">
+              <i class="wl-avatar" style="background:linear-gradient(145deg,#3f4a6b,#232a44)">반</i>
+              <b>반도체훈련소</b>
+              <span class="wl-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+              <span>신뢰도 82.4</span>
+            </p>
+            <h3>HBM4 경쟁 구도와 국내 수혜주</h3>
+            <p>HBM4 양산 일정과 주요 공급망 변화를 바탕으로 핵심 수혜 기업을 분석합니다.</p>
+            <div class="wl-chips"><span>반도체</span><span>HBM</span><span>산업분석</span></div>
+          </div>
+          <div class="wl-report-side">
+            <small>2026.08.26 · 12분</small>
+            <a class="wl-open" href="reports.html">원문 보기 ↗</a>
+            <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+          </div>
+        </li>
+
+        <li class="wl-report">
+          <div class="wl-report-main">
+            <p class="wl-author">
+              <i class="wl-avatar" style="background:linear-gradient(145deg,#8b6a4a,#5d4630)">실</i>
+              <b>실속요정</b>
+              <span class="wl-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+              <span>적중률 72.4%</span>
+            </p>
+            <h3>메모리 업사이클, 어디까지 왔나</h3>
+            <p>메모리 가격 반등의 구조적 요인과 업사이클 지속 가능성을 점검합니다.</p>
+            <div class="wl-chips"><span class="lock">🔒 구독자 전용</span><span>반도체</span><span>사이클</span></div>
+          </div>
+          <div class="wl-report-side">
+            <small>2026.08.25 · 10분</small>
+            <a class="wl-open" href="reports.html">원문 보기 ↗</a>
+            <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+          </div>
+        </li>
+
+        <li class="wl-report">
+          <div class="wl-report-main">
+            <p class="wl-author">
+              <i class="wl-avatar" style="background:linear-gradient(145deg,#5b57e0,#332f9e)">데</i>
+              <b>데이터헌터</b>
+              <span class="wl-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+              <span>적중률 69.8%</span>
+            </p>
+            <h3>금리 인하 이후 성장주 전략</h3>
+            <p>금리 사이클 전환 구간에서 수혜가 기대되는 성장주 섹터와 종목을 제시합니다.</p>
+            <div class="wl-chips"><span>금융</span><span>성장주</span><span>전략</span></div>
+          </div>
+          <div class="wl-report-side">
+            <small>2026.08.25 · 11분</small>
+            <a class="wl-open" href="reports.html">원문 보기 ↗</a>
+            <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+          </div>
+        </li>
+
+        <li class="wl-report">
+          <div class="wl-report-main">
+            <p class="wl-author">
+              <i class="wl-avatar" style="background:linear-gradient(145deg,#e5a63c,#c07f14)">가</i>
+              <b>가치투자자</b>
+              <span class="wl-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+              <span>적중률 68.1%</span>
+            </p>
+            <h3>2차전지 실적 바닥 확인하기</h3>
+            <p>2차전지 주요 기업들의 실적 바닥 신호와 회복 시점을 정리했습니다.</p>
+            <div class="wl-chips"><span class="lock">🔒 구독자 전용</span><span>2차전지</span><span>실적</span></div>
+          </div>
+          <div class="wl-report-side">
+            <small>2026.08.24 · 9분</small>
+            <a class="wl-open" href="reports.html">원문 보기 ↗</a>
+            <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+          </div>
+        </li>
+
+      </ul>
+      <p class="wl-empty" id="wl-empty-report" hidden>찜한 리포트가 없습니다.</p>
+    </section>
+
+    <!-- 예측가 -->
+    <section class="wl-card wl-panel" id="panel-user" hidden>
+      <ul class="wl-users" id="wl-user-list">
+
+        <li class="wl-user">
+          <span class="pic">
+            <i class="wl-avatar lg" style="background:linear-gradient(145deg,#3f4a6b,#232a44)">반</i>
+            <span class="wl-check big"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          </span>
+          <div class="wl-user-main">
+            <p class="wl-user-name"><b>반도체훈련소</b><span class="wl-sub">구독 중</span></p>
+            <p>반도체 사이클과 HBM 전망 분석</p>
+            <dl class="wl-user-stats">
+              <div><dt>신뢰도</dt><dd>82.4</dd></div>
+              <div><dt>적중률</dt><dd>78.6%</dd></div>
+              <div><dt>구독자</dt><dd>12.3K</dd></div>
+            </dl>
+            <div class="wl-user-actions">
+              <a class="wl-ghost" href="market.html">프로필 보기</a>
+              <button class="wl-solid" type="button" aria-pressed="true">구독 중</button>
+            </div>
+          </div>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-user">
+          <span class="pic">
+            <i class="wl-avatar lg" style="background:linear-gradient(145deg,#8b6a4a,#5d4630)">실</i>
+            <span class="wl-check big"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          </span>
+          <div class="wl-user-main">
+            <p class="wl-user-name"><b>실속요정</b><span class="wl-sub">구독 중</span></p>
+            <p>배당·가치주 중심의 중장기 전략</p>
+            <dl class="wl-user-stats">
+              <div><dt>신뢰도</dt><dd>76.1</dd></div>
+              <div><dt>적중률</dt><dd>72.4%</dd></div>
+              <div><dt>구독자</dt><dd>8.7K</dd></div>
+            </dl>
+            <div class="wl-user-actions">
+              <a class="wl-ghost" href="market.html">프로필 보기</a>
+              <button class="wl-solid" type="button" aria-pressed="true">구독 중</button>
+            </div>
+          </div>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-user">
+          <span class="pic">
+            <i class="wl-avatar lg" style="background:linear-gradient(145deg,#5b57e0,#332f9e)">데</i>
+            <span class="wl-check big"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          </span>
+          <div class="wl-user-main">
+            <p class="wl-user-name"><b>데이터헌터</b></p>
+            <p>데이터 기반 스윙 매매와 수급 분석</p>
+            <dl class="wl-user-stats">
+              <div><dt>신뢰도</dt><dd>73.1</dd></div>
+              <div><dt>적중률</dt><dd>69.8%</dd></div>
+              <div><dt>구독자</dt><dd>6.2K</dd></div>
+            </dl>
+            <div class="wl-user-actions">
+              <a class="wl-ghost" href="market.html">프로필 보기</a>
+              <button class="wl-solid" type="button" aria-pressed="false">구독하기</button>
+            </div>
+          </div>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+        <li class="wl-user">
+          <span class="pic">
+            <i class="wl-avatar lg" style="background:linear-gradient(145deg,#e5a63c,#c07f14)">가</i>
+          </span>
+          <div class="wl-user-main">
+            <p class="wl-user-name"><b>가치투자자</b></p>
+            <p>실적 기반 가치주 발굴</p>
+            <dl class="wl-user-stats">
+              <div><dt>신뢰도</dt><dd>70.5</dd></div>
+              <div><dt>적중률</dt><dd>68.1%</dd></div>
+              <div><dt>구독자</dt><dd>4.1K</dd></div>
+            </dl>
+            <div class="wl-user-actions">
+              <a class="wl-ghost" href="market.html">프로필 보기</a>
+              <button class="wl-solid" type="button" aria-pressed="false">구독하기</button>
+            </div>
+          </div>
+          <button class="wl-star" type="button" aria-label="찜 해제">★</button>
+        </li>
+
+      </ul>
+      <p class="wl-empty" id="wl-empty-user" hidden>찜한 예측가가 없습니다.</p>
+    </section>
+
   </div>
 </main>
 
 <script src="../assets/app.js"></script>
+<script>
+(function () {
+  var KINDS = {
+    stock:  { list: 'wl-stock-list',  item: '.wl-stock',  empty: 'wl-empty-stock'  },
+    report: { list: 'wl-report-list', item: '.wl-report', empty: 'wl-empty-report' },
+    user:   { list: 'wl-user-list',   item: '.wl-user',   empty: 'wl-empty-user'   }
+  };
+
+  // 탭 전환
+  document.querySelectorAll('.wl-tabs button').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var tab = button.dataset.tab;
+      document.querySelectorAll('.wl-tabs button').forEach(function (b) { b.classList.toggle('on', b === button); });
+      Object.keys(KINDS).forEach(function (kind) {
+        document.getElementById('panel-' + kind).hidden = kind !== tab;
+      });
+    });
+  });
+
+  // 찜 해제 — 개수와 빈 상태를 함께 갱신
+  function refresh(kind) {
+    var conf = KINDS[kind];
+    var left = document.querySelectorAll('#' + conf.list + ' ' + conf.item + ':not([hidden])').length;
+    document.getElementById('wl-count-' + kind).innerHTML =
+      left + '<small>' + (kind === 'stock' ? '개' : kind === 'report' ? '건' : '명') + '</small>';
+    document.getElementById('wl-tab-' + kind).textContent = left;
+    document.getElementById(conf.empty).hidden = left > 0;
+  }
+
+  Object.keys(KINDS).forEach(function (kind) {
+    var conf = KINDS[kind];
+    document.querySelectorAll('#' + conf.list + ' .wl-star').forEach(function (star) {
+      star.addEventListener('click', function () {
+        star.closest(conf.item).hidden = true;
+        refresh(kind);
+      });
+    });
+  });
+
+  // 알림 토글
+  document.querySelectorAll('.wl-toggle').forEach(function (toggle) {
+    toggle.addEventListener('click', function () {
+      toggle.setAttribute('aria-pressed', String(toggle.getAttribute('aria-pressed') !== 'true'));
+    });
+  });
+
+  // 구독 토글
+  document.querySelectorAll('.wl-solid').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var on = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(on));
+      button.textContent = on ? '구독 중' : '구독하기';
+      var tag = button.closest('.wl-user').querySelector('.wl-sub');
+      if (on && !tag) {
+        var badge = document.createElement('span');
+        badge.className = 'wl-sub';
+        badge.textContent = '구독 중';
+        button.closest('.wl-user').querySelector('.wl-user-name').appendChild(badge);
+      } else if (!on && tag) {
+        tag.remove();
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
