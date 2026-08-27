@@ -394,7 +394,8 @@ body.modal-open{overflow:hidden}.prediction-modal[hidden]{display:none}.predicti
 .sd-metric{padding:0 16px;border-left:1px solid var(--rule)}
 .sd-metric:first-child{padding-left:0;border-left:0}
 .sd-metric dt{display:flex;align-items:center;gap:5px;margin:0 0 9px;color:#8d95ab;font-size:13.5px;font-weight:700}
-.sd-metric dd{margin:0;color:var(--ink);font-size:19px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.sd-metric dd{margin:0;color:var(--ink);font-size:19px;font-weight:800;letter-spacing:-.01em;word-break:keep-all}
+.sd-metric.wide dd{font-size:16.5px;letter-spacing:-.03em}
 .sd-info{display:grid;place-items:center;width:15px;height:15px;flex:none;border-radius:50%;background:#e7eaf3;color:#8d95ab;font-size:10px;font-weight:800;cursor:help}
 .sd-more{align-self:flex-end;margin-top:14px;color:#7b849c;font-size:13.5px;font-weight:700}
 .sd-more:hover{color:var(--brand)}
