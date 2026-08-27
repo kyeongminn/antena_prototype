@@ -41,6 +41,20 @@
     }
   };
 
+  // 상단바 검색용 종목 데이터 — 종목 보기 목록과 동일하게 유지한다.
+  var STOCKS = [
+    { code: "005930", name: "삼성전자",         market: "KOSPI",  sector: "반도체",   price: 71800,  change: 1.42,  per: 14.3, pbr: 1.31, logo: "logo-samsung",   mark: "삼" },
+    { code: "000660", name: "SK하이닉스",       market: "KOSPI",  sector: "반도체",   price: 198500, change: 2.85,  per: 9.8,  pbr: 1.72, logo: "logo-skhy",      mark: "S" },
+    { code: "247540", name: "에코프로비엠",     market: "KOSDAQ", sector: "2차전지",  price: 167200, change: -1.36, per: 48.5, pbr: 5.24, logo: "logo-ecopro",    mark: "에" },
+    { code: "373220", name: "LG에너지솔루션",   market: "KOSPI",  sector: "2차전지",  price: 342000, change: -1.87, per: 72.4, pbr: 3.61, logo: "logo-lgenergy",  mark: "L" },
+    { code: "035420", name: "NAVER",            market: "KOSPI",  sector: "인터넷",   price: 176300, change: -0.62, per: 18.7, pbr: 1.12, logo: "logo-naver2",    mark: "N" },
+    { code: "005380", name: "현대차",           market: "KOSPI",  sector: "자동차",   price: 242000, change: 0.83,  per: 5.4,  pbr: 0.68, logo: "logo-hyundai",   mark: "현" },
+    { code: "035720", name: "카카오",           market: "KOSPI",  sector: "인터넷",   price: 42150,  change: -1.04, per: 25.2, pbr: 1.08, logo: "logo-kakao2",    mark: "카" },
+    { code: "068270", name: "셀트리온",         market: "KOSPI",  sector: "바이오",   price: 194600, change: -0.28, per: 41.9, pbr: 2.54, logo: "logo-celltrion", mark: "셀" },
+    { code: "207940", name: "삼성바이오로직스", market: "KOSPI",  sector: "바이오",   price: 968000, change: 0.37,  per: 62.1, pbr: 6.48, logo: "logo-sambio",    mark: "삼" },
+    { code: "105560", name: "KB금융",           market: "KOSPI",  sector: "금융",     price: 87900,  change: 0.11,  per: 6.2,  pbr: 0.59, logo: "logo-kb",        mark: "K" }
+  ];
+
   // 로그인 상태 — 프로토타입이라 localStorage 로만 흉내낸다.
   var AUTH_KEY = "antena.auth";
   function loggedIn() {
@@ -83,7 +97,10 @@
         '<div class="search">' +
           '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
             '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>' +
-          '<input type="search" placeholder="종목명 또는 키워드를 검색하세요 (예: 삼성전자, 2차전지, 반도체)">' +
+          '<input type="search" id="topbar-search" autocomplete="off" role="combobox" ' +
+            'aria-expanded="false" aria-controls="search-suggest" ' +
+            'placeholder="종목명 또는 종목코드를 검색하세요 (예: 삼성전자, 005930)">' +
+          '<div class="search-suggest" id="search-suggest" role="listbox" hidden></div>' +
         '</div>' +
         '<nav class="modeswitch">' + tabs + '</nav>' +
         '<div class="topbar-right">' +
@@ -131,6 +148,93 @@
   var nav = body.dataset.nav || 'home';
 
   body.insertAdjacentHTML('afterbegin', topbar(mode) + rail(mode, nav));
+
+  // ── 상단바 종목 검색 → 종목 상세로 이동 ──────────────
+  var searchInput = document.getElementById("topbar-search");
+  var suggest = document.getElementById("search-suggest");
+  var hits = [];
+  var cursor = -1;
+
+  function detailUrl(s) {
+    var params = new URLSearchParams({
+      code: s.code, name: s.name, market: s.market, sector: s.sector,
+      price: String(s.price), change: String(s.change),
+      per: String(s.per), pbr: String(s.pbr), logo: s.logo, mark: s.mark
+    });
+    return url("stock-detail.html") + "?" + params.toString();
+  }
+
+  function match(q) {
+    q = q.trim().toLowerCase().replace(/s+/g, "");
+    if (!q) return [];
+    return STOCKS.filter(function (s) {
+      return s.name.toLowerCase().replace(/s+/g, "").indexOf(q) !== -1 ||
+             s.code.indexOf(q) === 0 ||
+             s.sector.replace(/s+/g, "").indexOf(q) !== -1;
+    }).slice(0, 7);
+  }
+
+  function close() {
+    suggest.hidden = true;
+    suggest.innerHTML = "";
+    searchInput.setAttribute("aria-expanded", "false");
+    hits = []; cursor = -1;
+  }
+
+  function render(q) {
+    hits = match(q);
+    cursor = -1;
+    if (!q.trim()) return close();
+
+    if (!hits.length) {
+      suggest.innerHTML = '<p class="sg-empty">일치하는 종목이 없습니다</p>';
+    } else {
+      suggest.innerHTML = hits.map(function (s, i) {
+        var sign = s.change >= 0 ? "+" : "";
+        return '<button class="sg-item" type="button" role="option" data-i="' + i + '">' +
+            '<i class="sg-logo ' + s.logo + '">' + s.mark + '</i>' +
+            '<span class="sg-main"><b>' + s.name + '</b>' +
+              '<small>' + s.code + " · " + s.market + " · " + s.sector + '</small></span>' +
+            '<span class="sg-price"><b>' + s.price.toLocaleString("ko-KR") + '원</b>' +
+              '<small class="' + (s.change >= 0 ? "rise" : "fall") + '">' + sign + s.change.toFixed(2) + '%</small></span>' +
+          '</button>';
+      }).join("");
+      suggest.querySelectorAll(".sg-item").forEach(function (btn) {
+        btn.addEventListener("mousedown", function (event) {
+          event.preventDefault();
+          location.href = detailUrl(hits[Number(btn.dataset.i)]);
+        });
+      });
+    }
+    suggest.hidden = false;
+    searchInput.setAttribute("aria-expanded", "true");
+  }
+
+  function highlight(next) {
+    var items = suggest.querySelectorAll(".sg-item");
+    if (!items.length) return;
+    cursor = (next + items.length) % items.length;
+    items.forEach(function (el, i) { el.classList.toggle("on", i === cursor); });
+    items[cursor].scrollIntoView({ block: "nearest" });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", function () { render(searchInput.value); });
+    searchInput.addEventListener("focus", function () { if (searchInput.value.trim()) render(searchInput.value); });
+    searchInput.addEventListener("blur", function () { setTimeout(close, 120); });
+
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowDown") { event.preventDefault(); highlight(cursor + 1); return; }
+      if (event.key === "ArrowUp") { event.preventDefault(); highlight(cursor - 1); return; }
+      if (event.key === "Escape") { close(); return; }
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (!hits.length) hits = match(searchInput.value);
+        var pick = hits[cursor >= 0 ? cursor : 0];
+        if (pick) location.href = detailUrl(pick);
+      }
+    });
+  }
 
   var logout = document.getElementById("rail-logout");
   if (logout) {

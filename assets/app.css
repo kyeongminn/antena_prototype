@@ -554,3 +554,28 @@ body.modal-open{overflow:hidden}.prediction-modal[hidden]{display:none}.predicti
 @media(max-width:720px){
   .market-items{grid-template-columns:minmax(0,1fr)}
 }
+
+/* ── 상단바 종목 검색 자동완성 ────────────────────────── */
+.search-suggest{
+  position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:40;
+  max-height:340px;overflow-y:auto;padding:6px;
+  background:var(--surface);border:1px solid var(--rule);border-radius:14px;
+  box-shadow:0 2px 6px rgba(20,20,27,.06),0 22px 44px -26px rgba(40,42,90,.45);
+}
+.search-suggest[hidden]{display:none}
+.sg-item{
+  display:flex;align-items:center;gap:11px;width:100%;padding:9px 10px;
+  border-radius:10px;text-align:left;
+}
+.sg-item:hover,.sg-item.on{background:var(--brand-softer)}
+.sg-logo{
+  display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:9px;
+  color:#fff;font-style:normal;font:800 12.5px var(--sans);
+}
+.sg-main{flex:1;min-width:0}
+.sg-main b{display:block;overflow:hidden;color:var(--ink);font-size:13.5px;font-weight:750;text-overflow:ellipsis;white-space:nowrap}
+.sg-main small{display:block;margin-top:2px;color:var(--faint);font:650 11.5px var(--mono)}
+.sg-price{flex:none;text-align:right}
+.sg-price b{display:block;color:var(--ink);font:800 13px var(--mono)}
+.sg-price small{display:block;margin-top:2px;font:700 11.5px var(--mono)}
+.sg-empty{padding:16px 10px;color:var(--faint);font-size:13px;font-weight:650;text-align:center}
