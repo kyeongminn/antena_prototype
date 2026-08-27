@@ -152,11 +152,11 @@ body[data-view="pro"] .basic-only{display:none !important}
 .sp-donut-mid small{display:block;margin-bottom:4px;color:#79809c;font-size:12.5px;font-weight:700}
 .sp-donut-mid b{color:#141a3c;font:850 15px var(--mono)}
 .sp-legend{flex:1;min-width:0;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
-.sp-legend li{display:flex;align-items:center;gap:10px}
+.sp-legend li{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px}
 .sp-legend i{width:9px;height:9px;flex:none;border-radius:50%}
-.sp-legend b{flex:1;min-width:0;color:#2c3350;font-size:14.5px;font-weight:750}
+.sp-legend b{flex:1;min-width:0;color:#2c3350;font-size:14.5px;font-weight:750;white-space:nowrap}
 .sp-legend em{flex:none;font-style:normal;color:#39405c;font:800 14px var(--mono)}
-.sp-legend span{flex:none;width:104px;text-align:right;color:#79809c;font:650 13.5px var(--mono)}
+.sp-legend span{flex:1 0 100%;padding-left:19px;color:#79809c;font:650 13.5px var(--mono)}
 
 @media(max-width:1300px){
   .sp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -172,5 +172,4 @@ body[data-view="pro"] .basic-only{display:none !important}
   .sp-holding div:nth-child(n+3){border-top:1px solid var(--rule)}
   .sp-field > dt,.sp-field > .sp-label{width:100%}
   .sp-quick{margin-left:0}
-  .sp-legend span{width:auto}
 }
