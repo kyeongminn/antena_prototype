@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>모의 투자 준비 · ANTENA</title>
+<link rel="stylesheet" href="../assets/app.css">
+<link rel="stylesheet" href="../assets/sim-setup.css">
+</head>
+<body data-mode="sim" data-nav="play" class="sim-setup-page">
+
+<main class="main">
+  <div class="main-inner sim-setup">
+
+    <header class="ss-head">
+      <div>
+        <p class="ss-eyebrow">SIMULATION SETUP</p>
+        <h1>모의투자 조건을 설정하세요.</h1>
+        <p>종목과 투자 기간, 플레이 방식을 정하면 실제 시장 흐름을 기반으로 모의투자가 시작됩니다.</p>
+      </div>
+      <p class="ss-eta">예상 소요 시간 · 약 <b id="ss-eta">12</b>분</p>
+    </header>
+
+    <div class="ss-grid">
+
+      <!-- 선택한 종목 -->
+      <section class="ss-card">
+        <div class="ss-card-head">
+          <h2>선택한 종목</h2>
+          <a href="stocks.html">종목 변경</a>
+        </div>
+
+        <div class="ss-stock">
+          <i id="ss-mark">삼</i>
+          <div>
+            <b id="ss-name">삼성전자</b>
+            <small><span id="ss-code">005930</span> · <span id="ss-market">KOSPI</span></small>
+          </div>
+        </div>
+
+        <dl class="ss-rows">
+          <div class="ss-row"><dt>투자 시작일 직전 종가</dt><dd class="num"><span id="ss-close">71,577</span>원</dd></div>
+          <div class="ss-row"><dt>참고 목표가</dt><dd class="num"><span id="ss-target">85,892</span>원</dd></div>
+          <div class="ss-row">
+            <dt>기간</dt>
+            <dd>
+              <span class="ss-seg" role="group" aria-label="투자 기간">
+                <button type="button" data-days="5">5일</button>
+                <button type="button" data-days="10">10일</button>
+                <button class="on" type="button" data-days="20">20일</button>
+                <button type="button" data-days="60">60일</button>
+              </span>
+            </dd>
+          </div>
+          <div class="ss-row">
+            <dt><label for="ss-start-date">모의투자 시작일</label></dt>
+            <dd><input class="ss-date" id="ss-start-date" type="date" value="2026-08-24"></dd>
+          </div>
+          <div class="ss-row"><dt>종료 예정</dt><dd class="num" id="ss-end">2026.09.21</dd></div>
+        </dl>
+      </section>
+
+      <!-- 게임 모드 -->
+      <section class="ss-card">
+        <div class="ss-card-head">
+          <h2>게임 모드</h2>
+          <span>1개 선택</span>
+        </div>
+
+        <div class="ss-modes" role="group" aria-label="게임 모드">
+          <button class="ss-mode" type="button" data-mode="learn" aria-pressed="true">
+            <b>학습 모드</b>
+            <span class="ss-pick">선택됨</span>
+            <p>실제 시장 흐름과 이벤트를 순서대로 경험합니다.</p>
+          </button>
+          <button class="ss-mode" type="button" data-mode="contest" aria-pressed="false">
+            <b>대회 모드</b>
+            <span class="ss-pick">선택</span>
+            <p>AI 힌트 없이 스스로 판단하고 수익률로 겨룹니다.</p>
+          </button>
+          <button class="ss-mode" type="button" data-mode="demo" aria-pressed="false">
+            <b>시연 모드</b>
+            <span class="ss-pick">선택</span>
+            <p>주요 이벤트만 골라 빠르게 진행합니다.</p>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 초기 자본 · 옵션 -->
+    <section class="ss-card">
+      <div class="ss-capital-head">
+        <h2>초기 자본</h2>
+        <output class="num" id="ss-capital-out" for="ss-capital">10,000,000<span>원</span></output>
+      </div>
+
+      <label class="sr-only" for="ss-capital">초기 자본</label>
+      <input class="ss-range" id="ss-capital" type="range" min="1000000" max="100000000" step="1000000" value="10000000">
+      <div class="ss-ticks"><span>1백만</span><span>2천5백만</span><span>5천만</span><span>1억</span></div>
+
+      <div class="ss-option">
+        <div class="ss-option-copy">
+          <b>AI 힌트 사용</b>
+          <small>주요 이벤트 발생 시 시장 요약을 제공합니다.</small>
+        </div>
+        <button class="ss-toggle" id="ss-hint" type="button" aria-pressed="true" aria-label="AI 힌트 사용"></button>
+      </div>
+
+      <div class="ss-option">
+        <div class="ss-option-copy">
+          <b>진행 속도</b>
+          <small>진행 화면에서도 변경할 수 있습니다.</small>
+        </div>
+        <span class="ss-seg" role="group" aria-label="진행 속도">
+          <button class="on" type="button" data-speed="1">1×</button>
+          <button type="button" data-speed="2">2×</button>
+          <button type="button" data-speed="4">4×</button>
+        </span>
+      </div>
+
+      <div class="ss-foot">
+        <a class="ss-cancel" href="sim-index.html">취소</a>
+        <a class="ss-start" id="ss-start" href="sim-play.html">모의투자 시작 →</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/sim-setup.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+/* ANTENA prototype — 모의 투자 준비 (sim-setup.html) */
+
+.sim-setup{display:flex;flex-direction:column;gap:20px;max-width:1400px}
+
+/* ── 헤더 ───────────────────────────────────────────── */
+.ss-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px}
+.ss-eyebrow{margin:0 0 12px;color:var(--brand);font:800 13px var(--mono);letter-spacing:.22em}
+.ss-head h1{margin:0 0 10px;color:#0e1330;font-size:38px;font-weight:850;letter-spacing:-.04em}
+.ss-head p{margin:0;color:#6b7291;font-size:15px;font-weight:650}
+.ss-eta{margin:0;color:#9aa2b8;font:650 13.5px var(--mono);letter-spacing:.06em;white-space:nowrap}
+.ss-eta b{color:#5b6280;font-weight:800}
+
+/* ── 카드 공통 ──────────────────────────────────────── */
+.ss-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:20px;align-items:start}
+.ss-card{padding:26px 28px;background:var(--surface);border:1px solid var(--rule);border-radius:20px;box-shadow:var(--shadow)}
+.ss-card-head{display:flex;align-items:baseline;gap:12px;margin:0 0 20px}
+.ss-card-head h2{margin:0;color:var(--ink);font-size:20px;font-weight:850;letter-spacing:-.025em}
+.ss-card-head a,.ss-card-head span{margin-left:auto;color:#9aa2b8;font-size:13.5px;font-weight:650;letter-spacing:.02em}
+.ss-card-head a:hover{color:var(--brand)}
+
+/* ── 선택한 종목 ────────────────────────────────────── */
+.ss-stock{display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--rule);border-radius:14px}
+.ss-stock i{display:grid;place-items:center;width:54px;height:54px;flex:none;border-radius:50%;background:#eff0f6;color:#5c6484;font-style:normal;font-size:17px;font-weight:800}
+.ss-stock b{display:block;margin-bottom:5px;color:#161c37;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.ss-stock small{color:#98a0b6;font:650 13.5px var(--mono);letter-spacing:.04em}
+
+.ss-rows{margin:8px 0 0;padding:0}
+.ss-row{display:flex;align-items:center;gap:16px;min-height:64px;padding:8px 0;border-top:1px solid #f0f2f7}
+.ss-row:first-child{border-top:0}
+.ss-row dt{flex:1;min-width:0;color:#5b6280;font-size:14.5px;font-weight:650}
+.ss-row dd{margin:0;flex:none;color:#0e1330;font-size:18px;font-weight:800;letter-spacing:-.01em}
+
+.ss-seg{display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:#f1f2f7}
+.ss-seg button{height:34px;padding:0 17px;border-radius:999px;color:#6b7291;font-size:14px;font-weight:750}
+.ss-seg button:hover{color:var(--ink)}
+.ss-seg button.on{background:var(--brand);color:#fff}
+
+.ss-date{height:44px;padding:0 14px;border:1px solid var(--rule);border-radius:11px;background:var(--surface);color:#0e1330;font:800 15px var(--mono)}
+.ss-date:focus{border-color:var(--brand);outline:none}
+
+/* ── 게임 모드 ──────────────────────────────────────── */
+.ss-modes{display:flex;flex-direction:column;gap:14px}
+.ss-mode{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px 20px;width:100%;padding:20px 22px;border:1px solid var(--rule);border-radius:16px;background:var(--surface);text-align:left;transition:border-color .14s,background .14s}
+.ss-mode:hover{border-color:#cdc9f7}
+.ss-mode b{color:#161c37;font-size:17px;font-weight:800;letter-spacing:-.02em}
+.ss-mode p{grid-column:1 / -1;margin:0;color:#6b7291;font-size:14.5px;font-weight:650;text-align:right}
+.ss-pick{flex:none;padding:7px 15px;border:1px solid var(--rule);border-radius:9px;color:#a2a9bd;font-size:13px;font-weight:750}
+.ss-mode[aria-pressed="true"]{border-color:var(--brand);background:#f6f5fe}
+.ss-mode[aria-pressed="true"] .ss-pick{border-color:var(--brand);color:var(--brand-ink)}
+
+/* ── 초기 자본 ──────────────────────────────────────── */
+.ss-capital-head{display:flex;align-items:baseline;gap:16px;margin-bottom:22px}
+.ss-capital-head h2{margin:0;color:var(--ink);font-size:24px;font-weight:850;letter-spacing:-.03em}
+.ss-capital-head output{margin-left:auto;color:#0e1330;font:850 38px var(--mono);letter-spacing:-.01em}
+.ss-capital-head output span{font-size:26px}
+
+.ss-range{width:100%;height:8px;-webkit-appearance:none;appearance:none;border-radius:999px;background:linear-gradient(90deg,var(--brand) 0%,var(--brand) var(--fill,10%),#e3e4ec var(--fill,10%),#e3e4ec 100%);cursor:pointer}
+.ss-range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border:0;border-radius:50%;background:var(--brand);box-shadow:0 2px 8px rgba(70,66,229,.45);cursor:pointer}
+.ss-range::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:var(--brand);box-shadow:0 2px 8px rgba(70,66,229,.45);cursor:pointer}
+.ss-range:focus-visible{outline:2px solid var(--brand);outline-offset:4px}
+.ss-ticks{display:flex;justify-content:space-between;margin-top:12px;color:#a2a9bd;font-size:13px;font-weight:650}
+
+.ss-option{display:flex;align-items:center;gap:20px;padding:22px 0;border-top:1px solid #f0f2f7}
+.ss-option:first-of-type{margin-top:26px}
+.ss-option-copy{flex:1;min-width:0}
+.ss-option-copy b{display:block;margin-bottom:5px;color:#161c37;font-size:16px;font-weight:800}
+.ss-option-copy small{color:#8a90ab;font-size:13.5px;font-weight:650}
+
+.ss-toggle{position:relative;width:58px;height:32px;flex:none;border-radius:999px;background:#d7d9e4;transition:background .16s}
+.ss-toggle:after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(20,20,27,.28);transition:transform .16s}
+.ss-toggle[aria-pressed="true"]{background:var(--brand)}
+.ss-toggle[aria-pressed="true"]:after{transform:translateX(26px)}
+
+.ss-foot{display:flex;justify-content:flex-end;gap:12px;margin-top:26px}
+.ss-cancel{height:54px;padding:0 30px;border:1px solid var(--rule);border-radius:13px;color:#5b6280;font-size:16px;font-weight:750}
+.ss-cancel:hover{border-color:var(--strong);color:var(--ink)}
+.ss-start{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 32px;border-radius:13px;background:var(--brand);color:#fff;font-size:16px;font-weight:800;letter-spacing:-.01em;box-shadow:0 12px 26px -14px rgba(70,66,229,.65)}
+.ss-start:hover{background:var(--brand-ink)}
+.ss-start:active{transform:translateY(1px)}
+
+@media(max-width:1080px){
+  .ss-grid{grid-template-columns:minmax(0,1fr)}
+  .ss-head{grid-template-columns:minmax(0,1fr)}
+  .ss-eta{justify-self:start}
+}
+@media(max-width:680px){
+  .ss-card{padding:20px 18px}
+  .ss-head h1{font-size:28px}
+  .ss-row{flex-wrap:wrap;min-height:0;gap:8px}
+  .ss-row dd{margin-left:auto}
+  .ss-capital-head{flex-wrap:wrap;gap:8px}
+  .ss-capital-head output{font-size:29px}
+  .ss-mode p{text-align:left}
+  .ss-foot{flex-direction:column-reverse}
+  .ss-cancel,.ss-start{width:100%;justify-content:center}
+}

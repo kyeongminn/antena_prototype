@@ -32,7 +32,7 @@
       home: 'sim-index.html',
       nav: [
         { key: 'home',      icon: 'home',      text: '모의 투자 홈', href: 'sim-index.html' },
-        { key: 'play',      icon: 'play',      text: '모의 투자',    href: 'sim-play.html' },
+        { key: 'play',      icon: 'play',      text: '모의 투자',    href: 'sim-setup.html' },
         { key: 'portfolio', icon: 'portfolio', text: '내 포트폴리오', href: 'sim-portfolio.html' },
         { key: 'ranking',   icon: 'trophy',    text: '랭킹',        href: 'sim-ranking.html' }
       ]
