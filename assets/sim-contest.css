@@ -142,3 +142,7 @@
   .ct-events{grid-template-columns:minmax(0,1fr)}
   .ct-prizes{grid-template-columns:minmax(0,1fr)}
 }
+
+/* 좁은 폭에서 리더보드는 표 자체만 가로 스크롤 */
+.ct-board-wrap{overflow-x:auto}
+.ct-board{min-width:520px}

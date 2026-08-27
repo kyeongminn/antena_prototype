@@ -166,3 +166,11 @@
   .fc-mycard-body{flex-direction:column;align-items:flex-start}
   .fc-chain{position:static;margin-top:12px}
 }
+
+/* 좁은 폭에서 기간 칩 글자가 잘리지 않도록 */
+@media(max-width:520px){
+  .fc-trend-head{flex-wrap:wrap}
+  .fc-ranges{flex-wrap:wrap;margin-left:0;width:100%}
+  .fc-ranges button{flex:1 1 auto;height:auto;min-height:34px;padding:7px 12px;white-space:nowrap}
+  .fc-metrics{flex-wrap:wrap}
+}

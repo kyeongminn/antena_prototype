@@ -173,3 +173,19 @@ body[data-view="pro"] .basic-only{display:none !important}
   .sp-field > dt,.sp-field > .sp-label{width:100%}
   .sp-quick{margin-left:0}
 }
+
+/* 초협폭에서 종목명이 잘리지 않도록 */
+@media(max-width:560px){
+  .sp-chart-head{row-gap:8px}
+  .sp-chart-head b{white-space:normal;word-break:keep-all}
+  .sp-head-actions{margin-left:0;width:100%}
+}
+@media(max-width:560px){
+  .sp-chart-head b{flex:1 1 100%}
+}
+@media(max-width:560px){
+  /* 도넛과 범례를 세로로 나눠 종목명이 잘리지 않게 */
+  .sp-portfolio{flex-direction:column;align-items:stretch}
+  .sp-donut{align-self:center}
+  .sp-legend b{white-space:normal;word-break:keep-all}
+}

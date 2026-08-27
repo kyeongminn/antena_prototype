@@ -486,3 +486,71 @@ body.modal-open{overflow:hidden}.prediction-modal[hidden]{display:none}.predicti
   color:var(--faint);font-size:12px;font-weight:750;
 }
 .rail-logout:hover{background:var(--surface-2);color:var(--body)}
+
+/* ══ 레이아웃 보정 ═══════════════════════════════════════
+   app.css 에 (max-width:1280px)·(max-width:1180px) 블록이 좁은 화면 규칙보다
+   뒤에 중복 선언되어, 좁은 폭에서 넓은 레이아웃이 되살아나 가로 넘침이 생겼다.
+   아래는 폭 구간을 명시해 그 되살아남을 막는 보정이다. */
+
+/* 인사이트 홈 — 시장 Overview 3칸 */
+.market-items{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(min-width:721px) and (max-width:1180px){
+  .market-items{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .market-item{grid-template-columns:minmax(0,1fr) 84px}
+  .market-item .sparkline{display:none}
+}
+
+/* 예측가 둘러보기 — 추천 예측가 카드 */
+.featured-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.featured-profile{min-width:0}
+.featured-profile > *{min-width:0}
+@media(min-width:901px) and (max-width:1280px){
+  .featured-profile{grid-template-columns:96px minmax(0,1.2fr) minmax(0,2fr) 116px;gap:14px}
+}
+@media(max-width:900px){
+  .featured-profile{grid-template-columns:96px minmax(0,1fr)}
+  .featured-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+@media(max-width:620px){
+  .featured-profile{grid-template-columns:76px minmax(0,1fr)}
+  .featured-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* 우측 사이드 카드가 트랙을 넘어가지 않도록 */
+.predictor-market-grid > *{min-width:0}
+.predictor-stats-card,.category-leaders{min-width:0}
+.predictor-stats-card .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.category-leaders ul{min-width:0}
+
+/* 예측가 둘러보기 — 필터 바 (늦은 1450px 블록의 5열 규칙 차단) */
+.predictor-filters label,.predictor-filters>button,.predictor-filters select{min-width:0}
+@media(max-width:900px){
+  .predictor-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .predictor-filters>button{grid-column:1/-1;width:100%}
+}
+@media(max-width:620px){
+  .predictor-filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+}
+@media(max-width:460px){
+  .predictor-filters{grid-template-columns:minmax(0,1fr)}
+}
+
+/* 인사이트 홈 — 아주 좁은 폭에서 시장 카드는 2열로 축약 */
+@media(max-width:520px){
+  .market-item{grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:10px 0;border-right:0;border-top:1px solid #e3e6ef}
+  .market-item:first-child{border-top:0;padding-top:0}
+  .market-item .sparkline{display:none}
+}
+
+/* 초협폭(≤560px) 마무리 보정 */
+@media(max-width:560px){
+  .market-item p{white-space:normal;word-break:keep-all}
+  .prediction-step,.judgment-editor,.editor-toolbar,.judgment-editor textarea{min-width:0;max-width:100%}
+  .editor-toolbar{flex-wrap:wrap}
+  .cm-byline{flex-wrap:wrap}
+}
+
+/* 위 base .market-items 오버라이드가 원본의 (max-width:720px) 단일 열 규칙을
+   덮어버렸다 — 좁은 폭에서 다시 1열로 되돌린다. */
+@media(max-width:720px){
+  .market-items{grid-template-columns:minmax(0,1fr)}
+}
